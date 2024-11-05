@@ -194,7 +194,7 @@ var _ = Describe("NATS Streaming Transit", func() {
 		}
 		transporter := nats.CreateNatsTransporter(options)
 		transporter.SetPrefix("MOL")
-		Expect(<-transporter.Connect()).ShouldNot(Succeed())
+		Expect(<-transporter.Connect(nil)).ShouldNot(Succeed())
 	})
 
 	It("Should not fail on double disconnect", func() {
@@ -211,7 +211,7 @@ var _ = Describe("NATS Streaming Transit", func() {
 		}
 		transporter := nats.CreateNatsTransporter(options)
 		transporter.SetPrefix("MOL")
-		Expect(<-transporter.Connect()).Should(Succeed())
+		Expect(<-transporter.Connect(nil)).Should(Succeed())
 		Expect(<-transporter.Disconnect()).Should(Succeed())
 		Expect(<-transporter.Disconnect()).Should(Succeed())
 	})
@@ -245,7 +245,7 @@ var _ = Describe("NATS Streaming Transit", func() {
 
 		transporter := nats.CreateNatsTransporter(options)
 		transporter.SetPrefix("MOL")
-		Expect(<-transporter.Connect()).Should(Succeed())
+		Expect(<-transporter.Connect(nil)).Should(Succeed())
 
 		received := make(chan bool)
 		transporter.Subscribe("topicA", "node1", func(message moleculer.Payload) {

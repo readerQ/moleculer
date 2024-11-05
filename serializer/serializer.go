@@ -18,5 +18,14 @@ type Serializer interface {
 }
 
 func New(broker *moleculer.BrokerDelegates) Serializer {
-	return CreateJSONSerializer(broker.Logger("serializer", "json"))
+	switch broker.Config.Serializer {
+	case "CBOR":
+		{
+			return CreateCBORSerializer(broker.Logger("serializer", "cbor"))
+		}
+	default:
+		{
+			return CreateJSONSerializer(broker.Logger("serializer", "json"))
+		}
+	}
 }

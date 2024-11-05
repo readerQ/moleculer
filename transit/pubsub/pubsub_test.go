@@ -114,7 +114,7 @@ type mockTransporter struct {
 	PublishCalled   bool
 }
 
-func (t *mockTransporter) Connect() chan error {
+func (t *mockTransporter) Connect(registry moleculer.Registry) chan error {
 	return nil
 }
 

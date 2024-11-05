@@ -120,6 +120,7 @@ type Config struct {
 	LogLevel                   string
 	LogFormat                  string
 	DiscoverNodeID             func() string
+	Serializer                 string
 	Transporter                string
 	TransporterFactory         TransporterFactoryFunc
 	StrategyFactory            StrategyFactoryFunc

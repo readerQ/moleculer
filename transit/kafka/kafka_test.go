@@ -107,7 +107,7 @@ var _ = Describe("Test Kafka Transit", func() {
 			}
 			transporter := kafka.CreateKafkaTransporter(options)
 			transporter.SetPrefix("MOL")
-			Expect(<-transporter.Connect()).Should(Succeed())
+			Expect(<-transporter.Connect(nil)).Should(Succeed())
 			Expect(<-transporter.Disconnect()).Should(Succeed())
 			Expect(<-transporter.Disconnect()).Should(Succeed())
 		})
@@ -132,7 +132,7 @@ var _ = Describe("Test Kafka Transit", func() {
 			}
 			transporter := nats.CreateNatsTransporter(options)
 			transporter.SetPrefix("MOL")
-			Expect(<-transporter.Connect()).ShouldNot(Succeed())
+			Expect(<-transporter.Connect(nil)).ShouldNot(Succeed())
 		})
 
 		It("Should connect, subscribe, publish and disconnect", func() {
@@ -160,7 +160,7 @@ var _ = Describe("Test Kafka Transit", func() {
 			transporter.SetSerializer(serializer)
 			transporter.SetPrefix("MOL")
 			transporter.SetNodeID(node)
-			Expect(<-transporter.Connect()).Should(Succeed())
+			Expect(<-transporter.Connect(nil)).Should(Succeed())
 
 			received := make(chan bool)
 			done := make(chan bool)

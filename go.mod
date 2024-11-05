@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/armon/go-metrics v0.0.0-20190430140413-ec5e00d3c878 // indirect
+	github.com/fxamacker/cbor/v2 v2.7.0
 	github.com/gogo/protobuf v1.2.1 // indirect
 	github.com/hashicorp/go-msgpack v0.5.5 // indirect
 	github.com/hashicorp/go-uuid v1.0.2

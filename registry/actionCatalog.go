@@ -198,7 +198,7 @@ func (actionCatalog *ActionCatalog) printDebugActions() {
 func (actionCatalog *ActionCatalog) Next(actionName string, stg strategy.Strategy) *ActionEntry {
 	actions := actionCatalog.Find(actionName)
 	if actions == nil {
-		actionCatalog.logger.Debug("actionCatalog.Next() action not found: ", actionName, "  actionCatalog.actions: ", actionCatalog.actions)
+		actionCatalog.logger.Debug("actionCatalog.Next() action not found: ", actionName) // , "  actionCatalog.actions: ", actionCatalog.actions.
 		return nil
 	}
 	nodes := make([]strategy.Selector, len(actions))

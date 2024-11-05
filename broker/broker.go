@@ -46,6 +46,9 @@ func mergeConfigs(baseConfig moleculer.Config, userConfig []*moleculer.Config) m
 			if config.DiscoverNodeID != nil {
 				baseConfig.DiscoverNodeID = config.DiscoverNodeID
 			}
+			if config.Serializer != "" {
+				baseConfig.Serializer = config.Serializer
+			}
 			if config.Transporter != "" {
 				baseConfig.Transporter = config.Transporter
 			}
