@@ -106,26 +106,7 @@ func (pl CBORPayload) RawMap() map[string]interface{} {
 
 	return nil
 
-	result := map[string]interface{}{}
-
-	for k, v := range raw {
-		result[k] = v
-	}
-
-	return result
-	panic("not implemented")
-
 }
-
-// func (pl CBORPayload) Bson() bson.M {
-// 	//TODO implement
-// 	panic("not implemented")
-// }
-
-// func (pl CBORPayload) BsonArray() bson.A {
-// 	//TODO implement
-// 	panic("not implemented")
-// }
 
 func (pl CBORPayload) Map() map[string]moleculer.Payload {
 	//TODO implement
@@ -154,11 +135,9 @@ func (pl CBORPayload) ErrorPayload() moleculer.Payload {
 }
 
 func (pl CBORPayload) Value() interface{} {
-	//TODO implement
 
 	return pl.data
 
-	panic("not implemented")
 }
 
 func (pl CBORPayload) ValueArray() []interface{} {
@@ -189,8 +168,8 @@ func (pl CBORPayload) IntArray() []int {
 }
 
 func (pl CBORPayload) Int64() int64 {
-	//TODO implement
-	panic("not implemented")
+
+	return pl.data.(int64)
 }
 
 func (pl CBORPayload) Int64Array() []int64 {
@@ -199,8 +178,7 @@ func (pl CBORPayload) Int64Array() []int64 {
 }
 
 func (pl CBORPayload) Uint() uint64 {
-	//TODO implement
-	panic("not implemented")
+	return pl.data.(uint64)
 }
 
 func (pl CBORPayload) UintArray() []uint64 {
@@ -209,8 +187,7 @@ func (pl CBORPayload) UintArray() []uint64 {
 }
 
 func (pl CBORPayload) Float32() float32 {
-	//TODO implement
-	panic("not implemented")
+	return pl.data.(float32)
 }
 
 func (pl CBORPayload) Float32Array() []float32 {
@@ -219,8 +196,7 @@ func (pl CBORPayload) Float32Array() []float32 {
 }
 
 func (pl CBORPayload) Float() float64 {
-	//TODO implement
-	panic("not implemented")
+	return pl.data.(float64)
 }
 
 func (pl CBORPayload) FloatArray() []float64 {
@@ -232,8 +208,7 @@ func (pl CBORPayload) String() string {
 
 	r, _ := pl.data.(string)
 	return r
-	//TODO implement
-	panic("not implemented")
+
 }
 
 func (pl CBORPayload) StringArray() []string {
@@ -244,10 +219,8 @@ func (pl CBORPayload) StringArray() []string {
 func (pl CBORPayload) Bool() bool {
 
 	b, ok := pl.data.(bool)
-
 	return ok && b
-	//TODO implement
-	panic("not implemented")
+
 }
 
 func (pl CBORPayload) BoolArray() []bool {
@@ -261,8 +234,7 @@ func (pl CBORPayload) ByteArray() []byte {
 }
 
 func (pl CBORPayload) Time() time.Time {
-	//TODO implement
-	panic("not implemented")
+	return pl.data.(time.Time)
 }
 
 func (pl CBORPayload) TimeArray() []time.Time {
