@@ -133,10 +133,23 @@ func (serializer CBORSerializer) StringToMap(string) map[string]interface{} {
 }
 func (serializer CBORSerializer) cleanContextMap(values map[string]interface{}) map[string]interface{} {
 	if values["level"] != nil {
-		values["level"] = int(values["level"].(float64))
+
+		float, ok := values["level"].(float64)
+		if ok {
+			values["level"] = int(float)
+		} else {
+			values["level"] = int(values["level"].(uint64))
+		}
+
 	}
 	if values["timeout"] != nil {
-		values["timeout"] = int(values["timeout"].(float64))
+		float, ok := values["timeout"].(float64)
+		if ok {
+			values["timeout"] = int(float)
+		} else {
+			values["timeout"] = int(values["timeout"].(uint64))
+		}
+
 	}
 	return values
 }
