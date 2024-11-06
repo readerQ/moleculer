@@ -169,6 +169,10 @@ func (pl CBORPayload) IntArray() []int {
 
 func (pl CBORPayload) Int64() int64 {
 
+	u, o := pl.data.(uint64)
+	if o {
+		return int64(u)
+	}
 	return pl.data.(int64)
 }
 
@@ -178,7 +182,12 @@ func (pl CBORPayload) Int64Array() []int64 {
 }
 
 func (pl CBORPayload) Uint() uint64 {
+	s, o := pl.data.(int64)
+	if o {
+		return uint64(s)
+	}
 	return pl.data.(uint64)
+
 }
 
 func (pl CBORPayload) UintArray() []uint64 {
