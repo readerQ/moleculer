@@ -42,10 +42,10 @@ type PubSub struct {
 	brokerStarted     bool
 }
 
-const DATATYPE_UNDEFINED = 0
-const DATATYPE_NULL = 1
-const DATATYPE_JSON = 2
-const DATATYPE_BUFFER = 3
+const DATATYPE_UNDEFINED = "0"
+const DATATYPE_NULL = "1"
+const DATATYPE_JSON = "2"
+const DATATYPE_BUFFER = "3"
 
 func (pubsub *PubSub) onServiceAdded(values ...interface{}) {
 	localNodeID := pubsub.broker.LocalNode().GetID()
