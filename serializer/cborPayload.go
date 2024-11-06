@@ -2,6 +2,7 @@ package serializer
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/moleculer-go/moleculer"
@@ -25,8 +26,16 @@ func (pl CBORPayload) Sort(field string) moleculer.Payload {
 }
 
 func (pl CBORPayload) Remove(fields ...string) moleculer.Payload {
-	//TODO implement
-	panic("not implemented")
+
+	tmp := pl.data
+	mapa, ok := tmp.(*map[string]interface{})
+	if !ok {
+		return CBORPayload{data: fmt.Errorf("remove error")}
+	}
+	for _, key := range fields {
+		delete(*mapa, key)
+	}
+	return CBORPayload{data: mapa, logger: pl.logger}
 }
 
 func (pl CBORPayload) AddItem(value interface{}) moleculer.Payload {

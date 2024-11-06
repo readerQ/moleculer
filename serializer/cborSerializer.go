@@ -1,10 +1,13 @@
 package serializer
 
 import (
+	"bytes"
+	"fmt"
 	"io"
 
 	"github.com/fxamacker/cbor/v2"
 	"github.com/moleculer-go/moleculer"
+	"github.com/moleculer-go/moleculer/payload"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -16,19 +19,33 @@ func CreateCBORSerializer(logger *log.Entry) CBORSerializer {
 	return CBORSerializer{logger}
 }
 
-func (serializer CBORSerializer) ReaderToPayload(io.Reader) moleculer.Payload {
-	// TODO implement
-	panic("not implemented")
+func (serializer CBORSerializer) ReaderToPayload(r io.Reader) moleculer.Payload {
+	buf := bytes.Buffer{}
+	buf.ReadFrom(r)
+	data := buf.Bytes()
+
+	b, err := bytesToMap(data)
+	if err != nil {
+		return payload.New(fmt.Errorf("cbor unmarshal error"))
+	}
+
+	payload := CBORPayload{data: b, logger: serializer.logger}
+	return payload
+}
+
+func bytesToMap(data []byte) (map[string]interface{}, error) {
+
+	b := map[string]interface{}{}
+
+	err := cbor.Unmarshal(data, &b)
+	return b, err
 }
 
 func (serializer CBORSerializer) BytesToPayload(data *[]byte) moleculer.Payload {
 
-	//fmt.Println(string(*data))
-	b := map[string]interface{}{}
-
-	err := cbor.Unmarshal(*data, &b)
+	b, err := bytesToMap(*data)
 	if err != nil {
-		serializer.logger.Error(err)
+		return payload.New(fmt.Errorf("cbor unmarshal error"))
 	}
 
 	c := deepCopyMap(b)
@@ -109,14 +126,12 @@ func (serializer CBORSerializer) PayloadToBytes(payload moleculer.Payload) []byt
 		serializer.logger.Error(err)
 	}
 	return b
-	// TODO implement
-	panic("not implemented")
 
 }
 
 func (serializer CBORSerializer) PayloadToString(payload moleculer.Payload) string {
-	// TODO implement
-	panic("not implemented")
+
+	return string(serializer.PayloadToBytes(payload))
 
 }
 
