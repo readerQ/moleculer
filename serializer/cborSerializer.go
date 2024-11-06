@@ -131,10 +131,18 @@ func (serializer CBORSerializer) StringToMap(string) map[string]interface{} {
 	panic("not implemented")
 
 }
+func (serializer CBORSerializer) cleanContextMap(values map[string]interface{}) map[string]interface{} {
+	if values["level"] != nil {
+		values["level"] = int(values["level"].(float64))
+	}
+	if values["timeout"] != nil {
+		values["timeout"] = int(values["timeout"].(float64))
+	}
+	return values
+}
 
-func (serializer CBORSerializer) PayloadToContextMap(moleculer.Payload) map[string]interface{} {
-	// TODO implement
-	panic("not implemented")
+func (serializer CBORSerializer) PayloadToContextMap(payload moleculer.Payload) map[string]interface{} {
+	return serializer.cleanContextMap(payload.RawMap())
 
 }
 
