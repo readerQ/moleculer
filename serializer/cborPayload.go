@@ -44,13 +44,23 @@ func (pl CBORPayload) AddItem(value interface{}) moleculer.Payload {
 }
 
 func (pl CBORPayload) Add(field string, value interface{}) moleculer.Payload {
-	//TODO implement
-	panic("not implemented")
+	mapa, ok := pl.data.(map[string]interface{})
+	if !ok {
+		return pl
+	}
+	mapa[field] = value
+	return CBORPayload{data: mapa, logger: pl.logger}
 }
 
-func (pl CBORPayload) AddMany(map[string]interface{}) moleculer.Payload {
-	//TODO implement
-	panic("not implemented")
+func (pl CBORPayload) AddMany(params map[string]interface{}) moleculer.Payload {
+	mapa, ok := pl.data.(map[string]interface{})
+	if !ok {
+		return pl
+	}
+	for field, value := range params {
+		mapa[field] = value
+	}
+	return CBORPayload{data: mapa, logger: pl.logger}
 }
 
 func i2m(src map[interface{}]interface{}) map[string]interface{} {
