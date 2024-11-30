@@ -7,7 +7,7 @@ import (
 	"github.com/moleculer-go/moleculer/context"
 	"github.com/moleculer-go/moleculer/payload"
 	"github.com/moleculer-go/moleculer/test"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
 

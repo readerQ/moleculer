@@ -8,7 +8,7 @@ import (
 	"github.com/moleculer-go/moleculer/test"
 
 	"github.com/moleculer-go/moleculer"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
 	bus "github.com/moleculer-go/goemitter"

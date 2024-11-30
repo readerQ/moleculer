@@ -2,7 +2,7 @@ package math_test
 
 import (
 	"github.com/moleculer-go/moleculer/broker"
-	test "github.com/onsi/ginkgo"
+	test "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
 	"github.com/moleculer-go/moleculer/examples/math"

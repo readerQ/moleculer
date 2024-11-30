@@ -5,7 +5,7 @@ import (
 	"github.com/moleculer-go/moleculer/registry"
 	"github.com/moleculer-go/moleculer/service"
 	"github.com/moleculer-go/moleculer/strategy"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	log "github.com/sirupsen/logrus"
 )

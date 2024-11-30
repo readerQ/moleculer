@@ -11,7 +11,7 @@ import (
 	"github.com/moleculer-go/moleculer/context"
 	"github.com/moleculer-go/moleculer/test"
 	"github.com/moleculer-go/moleculer/transit/memory"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	log "github.com/sirupsen/logrus"
 )
